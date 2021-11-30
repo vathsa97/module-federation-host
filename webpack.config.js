@@ -4,7 +4,7 @@ const ExternalTemplateRemotesPlugin = require("external-remotes-plugin");
 const path = require("path");
 // const webpack = require("webpack");
 
-module.exports = {
+module.exports = (_, argv) => ({
   entry: "./src/index",
   mode: "development",
   devServer: {
@@ -13,7 +13,10 @@ module.exports = {
     historyApiFallback: true,
   },
   output: {
-    publicPath: "/",
+    publicPath:
+      argv.mode === "production"
+        ? "https://module-federation-host-silk.vercel.app/"
+        : "http://localhost:3001/",
   },
   module: {
     rules: [
@@ -38,7 +41,7 @@ module.exports = {
         test: /\.svg$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
           },
         ],
       },
@@ -46,7 +49,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|ico)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
           },
         ],
       },
@@ -71,4 +74,4 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
-};
+});
