@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import styled from "styled-components";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import imgSrc from "./webpack-logo.jpg";
 // import {
 //   StylesProvider,
 //   createGenerateClassName,
@@ -37,6 +38,11 @@ const App = () => {
   return (
     <React.StrictMode>
       <Wrapper>App 1</Wrapper>
+      <img
+        style={{ width: "5em", height: "5em" }}
+        alt="webpack-icon"
+        src={imgSrc}
+      />
       <Suspense fallback={<div>Loading...</div>}>
         <BrowserRouter>
           <Switch>
